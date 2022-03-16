@@ -1,0 +1,57 @@
+.ToDoList{
+    :global{
+        .input-group{
+            height: 40px;
+            display: flex;
+            border: 1px solid #ccc;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            margin: 10px;
+            input{
+                flex: 1;
+                border: none;
+                height: 100%;
+                font-size: 15px;
+                padding: 0 10px;
+                &:focus-visible{
+                    outline: none;
+                }
+            }
+            button{
+                cursor: pointer;
+                border: none;
+                height: 100%;
+            }
+        }
+        h1{
+            padding: 20px;
+        }
+        .card-list{
+            padding: 20px;
+            display: flex;
+            .card{
+                flex: 0.5;
+                &-item{
+                    display: flex;
+                    height: 25px;
+                    gap: 20px;
+                    padding: 5px 20px;
+                    margin: 20px 0;
+                    margin-right: 50px;
+                    border: 2px solid #ccc;
+                    button{
+                        cursor: pointer;
+                    }
+                    &.done{
+                        text-decoration: line-through;
+                        background: #ccc;
+                        button{
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
