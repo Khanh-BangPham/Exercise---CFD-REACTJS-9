@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Project() {
     return (
-        <div className="tab3" style={{ display: 'none' }}>
+        <div className="tab3" >
             <div className="row">
                 <div className="col-md-6 course">
                     <div className="wrap">

@@ -1,10 +1,17 @@
 import React from 'react';
-import Info from './components/Coin'
+import Info from './components/Info'
 import Course from './components/Course';
 import Coin from './components/Coin';
 import Project from './components/Project';
 import Payment from './components/Payment';
-const Profile = () => {
+import { Outlet, Link, NavLink } from 'react-router-dom';
+import { useState } from 'react';
+const Profile = ({path}) => {
+    // const [tabs, setTabs] = useState(0);
+    // const onclick = (i) => (e) => {
+    //     e.preventDefault();
+    //     setTabs(i);
+    // }
     return (
         <>
             <main className="profile" id="main">
@@ -21,18 +28,19 @@ const Profile = () => {
                     <div className="container">
                         <div className="tab">
                             <div className="tab-title">
-                                <a href="#" className="active">Thông tin tài khoản</a>
-                                <a href="#">Khóa học của bạn</a>
-                                <a href="#">Dự án đã làm</a>
-                                <a href="#">Lịch sử thanh toán</a>
-                                <a href="#">Quản lý COIN của tôi</a>
+                                <NavLink to='/ca-nhan' end>Thông tin tài khoản</NavLink>
+                                <NavLink to='/ca-nhan/khoa-hoc'>Khóa học của bạn</NavLink>
+                                <NavLink to='/ca-nhan/du-an'>Dự án đã làm</NavLink>
+                                <NavLink to='/ca-nhan/thanh-toan'>Lịch sử thanh toán</NavLink>
+                                <NavLink to='/ca-nhan/coin'>Quản lý COIN của tôi</NavLink>
                             </div>
                             <div className="tab-content">
-                                <Info />
-                                <Course />
-                                <Project />
-                                <Payment />
-                                <Coin />
+                              <Outlet/>
+                              {/* {tabs === 0 && <Info/>}
+                              {tabs === 1 && <Course/>}
+                              {tabs === 2 && <Project/>}
+                              {tabs === 3 && <Payment/>}
+                              {tabs === 4 && <Coin/>} */}
                             </div>
                         </div>
                     </div>

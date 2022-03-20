@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-
+import { render } from '@testing-library/react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header';
 import Footer from './components/footer';
 import Home from './pages/home';
@@ -16,32 +16,40 @@ import Profile from './pages/profile';
 import Projects from './pages/projects';
 import Register from './pages/register';
 import Payment from './pages/payment';
-import Demo from './pages/demo';
 import MainLayout from './layouts/MainLayout';
-
+import ProfileInfo from './pages/profile/components/Info';
+import ProfileCourse from './pages/profile/components/Course';
+import ProfileProject from './pages/profile/components/Project';
+import ProfilePayment from './pages/profile/components/Payment';
+import ProfileCoin from './pages/profile/components/Coin';
 
 function App() {
   return (
     <>
-      <MainLayout >
-        {/* <Error404 /> */}
-        {/* <CourseDetail name = 'Thực chiến Front end căn bản' date = '29/12/2021' time = '18 buổi' price = '4.000.000' 
-        describe={'Many Laravel apps don’t warrant the complexity of a full front-end framework like Vue or React. '
-        + 'In this series, we’ll walk through a handful of simple ways to add dynamic functionality to your apps.'}/> */}
-        {/* <Email /> */}
-        {/* <Faq /> */}
-        {/* <CoinIntroduced /> */}
-        {/* <Cooperation /> */}
-        <Home />
-        {/* <Courses /> */}
-        {/* <Profile />  */}
-        {/* <Projects /> */}
-        {/* <Register /> */}
-        {/* <Payment /> */}
-        {/* <Demo /> */}
-        {/* <Team /> */}
-        {/* <Register /> */}
-      </MainLayout>
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route path='/' element={<Home />} />
+          <Route path='/khoa-hoc' element={<Courses />} />
+          <Route path='/khoa-hoc/chi-tiet' element={<CourseDetail />} />
+          <Route path='/lien-he' element={<Cooperation />} />
+          <Route path='/ca-nhan' element={<Profile />}>
+            <Route index element={<ProfileInfo />}/>
+            <Route path='khoa-hoc' element={<ProfileCourse />}/>
+            <Route path='du-an' element={<ProfileProject />}/>
+            <Route path='thanh-toan' element={<ProfilePayment />}/>
+            <Route path='coin' element={<ProfileCoin />}/>
+          </Route>
+          <Route path='/thanh-vien' element={<Team />} />
+          <Route path='/huong-dan-thanh-toan' element={<Payment />} />
+          <Route path='/du-an' element={<Projects />} />
+          <Route path='/dang-ky' element={<Register />} />
+          <Route path='/gioi-thieu-coin' element={<CoinIntroduced />} />
+          <Route path='/email' element={<Email />} />
+          <Route path='/cau-hoi-thuong-gap' element={<Faq />} />
+          <Route path='/email' element={<Email />} />
+          <Route path='/*' element={<Error404 />} />
+        </Route>
+      </Routes>
     </>
   );
 }

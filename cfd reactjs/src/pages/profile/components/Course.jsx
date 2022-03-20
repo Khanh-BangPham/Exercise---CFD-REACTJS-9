@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function course() {
+export default function Course() {
   return (
-    <div className="tab2" style={{ display: 'none' }}>
+    <div className="tab2">
     <div className="item">
         <div className="cover">
             <img src="/img/img3.png" alt />
