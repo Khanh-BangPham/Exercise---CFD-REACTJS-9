@@ -1,9 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
 import Label from './components/Label';
+import { HOME_PATH } from '../../contants/path';
+import { courseService } from '../../services/course';
+import { useNavigate } from 'react-router-dom';
+import { currency } from '../../utils/number';
+import useQuery from '../../hooks/useQuery';
 const Register = () => {
     const [form, setForm] = useState({})
     const [erorrs, setErorrs] = useState({})
-
+    const {data: detail} = useQuery(() => {return courseService.getDetail(id)}, [])
+    const { id } = useParams();
     const _btnSubmit = (e) => {
         e.preventDefault();
         const errorObj = {}
@@ -41,11 +48,11 @@ const Register = () => {
                     <div className="container">
                         <div className="wrap container">
                             <div className="main-sub-title">ĐĂNG KÝ</div>
-                            <h1 className="main-title">Thực chiến front-end căn bản </h1>
+                            <h1 className="main-title"> {detail?.title} </h1>
                             <div className="main-info">
-                                <div className="date"><strong>Khai giảng:</strong> 15/11/2020</div>
-                                <div className="time"><strong>Thời lượng:</strong> 18 buổi</div>
-                                <div className="time"><strong>Học phí:</strong> 6.000.000 VND</div>
+                                <div className="date"><strong>Khai giảng:</strong> {detail?.opening_time}</div>
+                                <div className="time"><strong>Thời lượng:</strong> {detail?.count_video} buổi</div>
+                                <div className="time"><strong>Học phí:</strong> {currency(detail?.money)} VND</div>
                             </div>
                             <form className="form">
                                 <Label 

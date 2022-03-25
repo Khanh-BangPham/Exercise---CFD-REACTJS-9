@@ -22,15 +22,18 @@ import ProfileCourse from './pages/profile/components/Course';
 import ProfileProject from './pages/profile/components/Project';
 import ProfilePayment from './pages/profile/components/Payment';
 import ProfileCoin from './pages/profile/components/Coin';
+import Login from './pages/login'
+import { COURSE_DETAIL_PATH, REGISTER_PATH, HOME_PATH } from './contants/path';
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route path='/' element={<Home />} />
+          <Route path={HOME_PATH} element={<Home />} />
           <Route path='/khoa-hoc' element={<Courses />} />
-          <Route path='/khoa-hoc/chi-tiet' element={<CourseDetail />} />
+          <Route path={COURSE_DETAIL_PATH} element={<CourseDetail />} />
+          <Route path={REGISTER_PATH} element={<Register />} />
           <Route path='/lien-he' element={<Cooperation />} />
           <Route path='/ca-nhan' element={<Profile />}>
             <Route index element={<ProfileInfo />}/>
@@ -42,11 +45,11 @@ function App() {
           <Route path='/thanh-vien' element={<Team />} />
           <Route path='/huong-dan-thanh-toan' element={<Payment />} />
           <Route path='/du-an' element={<Projects />} />
-          <Route path='/dang-ky' element={<Register />} />
           <Route path='/gioi-thieu-coin' element={<CoinIntroduced />} />
           <Route path='/email' element={<Email />} />
           <Route path='/cau-hoi-thuong-gap' element={<Faq />} />
           <Route path='/email' element={<Email />} />
+          <Route path='/login'element={<Login/>}/>
           <Route path='/*' element={<Error404 />} />
         </Route>
       </Routes>

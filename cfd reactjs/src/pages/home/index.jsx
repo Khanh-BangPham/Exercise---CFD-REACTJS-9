@@ -7,14 +7,25 @@ import Gallery from './components/Gallery';
 import Testimonial from './components/Testimonial';
 import Action from './components/Action';
 import Popupvideo from './components/PopupVideo';
-
+import { useState, useEffect } from 'react';
+import { courseService } from '../../services/course';
+import useQuery from '../../hooks/useQuery';
 const Home = () => {
+    // const [courses, setCourses] = useState()
+
+    // useEffect(() => {
+    //     courseService.getList()
+    //     .then(res => {
+    //         setCourses(res.data.data);
+    //     })
+    // }, []);
+    const {data: courses} = useQuery(() => {return courseService.getList()}, [])
     return (
         <>
             <main className="homepage" id="main">
                 <Banner />
-                <CourseListOnline />
-                <CourseListOffline />
+                <CourseListOnline courses={courses}/>
+                {/* <CourseListOffline /> */}
                 <Different />
                 {/* <section class="section-3">
                     <div class="container">

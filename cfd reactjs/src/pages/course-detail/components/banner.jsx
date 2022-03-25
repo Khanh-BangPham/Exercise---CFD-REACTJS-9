@@ -1,16 +1,20 @@
 import React from 'react';
-
-const Banner = ({name, date, time, price}) => {
+import { Link } from 'react-router-dom';
+import { currency } from '../../../utils/number';
+import Skeleton from '@mui/material/Skeleton';
+const Banner = ({name, date, time, price, path}) => {
     return (
         <section className="banner style2" style={{ '--background': '#cde6fb' }}>
             <div className="container">
                 <div className="info">
-                    <h1>{name}</h1>
+                    {
+                        name?<h1>{name}</h1>:<Skeleton height={130} width={'100%'}/>
+                    }
                     <div className="row">
                         <div className="date"><strong>Khai giảng:</strong> {date} </div>
-                        <div className="time"><strong>Thời lượng:</strong> {time} </div>
+                        <div className="time"><strong>Thời lượng:</strong> {time} Buổi</div>
                     </div>
-                    <div className="btn white round" style={{ '--color-btn': '#70b6f1' }}>đăng ký</div>
+                    <Link to={path} className="btn white round" style={{ '--color-btn': '#70b6f1' }}>đăng ký</Link>
                 </div>
             </div>
             <div className="bottom">
@@ -20,7 +24,7 @@ const Banner = ({name, date, time, price}) => {
                             <img src="/img/play-icon-white.png" alt />
                         </div> <span>giới thiệu</span>
                     </div>
-                    <div className="money">{`${price} VND`}</div>
+                    <div className="money">{currency(price)} VND</div>
                 </div>
             </div>
         </section>

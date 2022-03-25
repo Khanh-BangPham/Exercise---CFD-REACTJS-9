@@ -1,13 +1,16 @@
 import React from 'react';
+import { generatePath } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import {COURSE_DETAIL_PATH} from '../../contants/path'
+const Course = ({ courseName , courseImage, describe, teacherName, teacherImage, status, slug, id}) => {
+    const detailPath = generatePath(COURSE_DETAIL_PATH, {slug, id})
 
-const Course = ({ courseName , courseImage, describe, teacherName, teacherImage, status, slug}) => {
     return (
         <>
             <div className="col-md-4 course">
                 <div className="wrap">
-                    <a className="cover" href="#">
+                    <Link className="cover" to={detailPath}>
                         <img src={courseImage} alt />
-                        <span className="badge b1">Đã kết thúc</span>
                         {
                             status == 'da-ket-thuc' ?  <span className="badge b1">Đã kết thúc</span> : (
                                 status == 'dang-dien-ra' ? <span className="badge b2">Đang diễn ra</span> 
@@ -27,19 +30,19 @@ const Course = ({ courseName , courseImage, describe, teacherName, teacherImage,
                                 <img src="/img/icon-viewmore.svg" alt />
                             </div>
                         </div>
-                    </a>
+                    </Link>
                     <div className="info">
-                        <a className="name" href="#">
+                        <Link className="name" to={detailPath}>
                            {courseName}
-                        </a>
+                        </Link>
                         <p className="des">
                            {describe}
                         </p>
                     </div>
                     <div className="bottom">
                         <div className="teacher">
-                            <div className="avatar">
-                                <img src={teacherImage} alt />
+                            <div className="avatar" style={{height: '36px', minWidth: '36px'}}>
+                                <img src={teacherImage} style={{objectFit:'cover', height:'100%'}} />
                             </div>
                             <div className="name">{teacherName}</div>
                         </div>

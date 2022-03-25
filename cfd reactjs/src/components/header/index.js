@@ -1,8 +1,12 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 import Sidebar from '../sidebar';
+import { AuthContext } from '../../context/AuthContext'
+import { HOME_PATH } from '../../contants/path';
 
 const Header = () => {
+    const { user } = useContext(AuthContext);
+
     const toggleMenu = () => {
         document.body.classList.toggle('menu-is-show');
     }
@@ -18,17 +22,18 @@ const Header = () => {
                         </div>
                         <span className="text">menu</span>
                     </div>
-                    <a href="#" className="logo">
+                    <Link to={HOME_PATH} className="logo">
                         <img src="/img/logo.svg" alt />
                         <h1>CFD</h1>
-                    </a>
+                    </Link>
                     <div className="right">
-                        <div className="have-login">
+                        {
+                            user? <div className="have-login">
                             <div className="account">
                                 <a href="#" className="info">
-                                    <div className="name">Trần Lê Trọng Nghĩa</div>
+                                    <div className="name">{user.name}</div>
                                     <div className="avatar">
-                                        <img src="/img/avt.png" alt />
+                                        <img src={user.avatar} alt />
                                     </div>
                                 </a>
                             </div>
@@ -39,15 +44,16 @@ const Header = () => {
                                 <a href="#">Thông tin tài khoản</a>
                                 <a href="#">Đăng xuất</a>
                             </div>
+                        </div> : <div class="not-login bg-none">
+                            <Link to='/login' class="btn-register">Đăng nhập</Link>
+                            <Link to='/login' class="btn main btn-open-login">Đăng ký</Link>
                         </div>
-                        {/* <div class="not-login bg-none">
-      <a href="#" class="btn-register">Đăng nhập</a>
-      <a href="login.html" class="btn main btn-open-login">Đăng ký</a>
-  </div> */}
+                        }
+                        
                     </div>
                 </div>
             </header>
-            <Sidebar/>
+            <Sidebar />
         </>
     );
 }
