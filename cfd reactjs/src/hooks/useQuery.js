@@ -1,15 +1,20 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 const useQuery = (callback, dependencyList = [], initialValue = undefined) => {
-    const [data, setData] = useState(initialValue)
-    useEffect(() => {
-        callback()
-        .then(res => {
-            setData(res.data)
-        })
-    }, dependencyList)
+  // console.log("got in useQuery", dependencyList, initialValue);
+  const [data, setData] = useState(initialValue);
+  const [loading, setLoading] = useState(true);
 
-    return {data}
-}
+  useEffect(() => {
+    setLoading(true);
+    callback().then((res) => {
+      // console.log("Done callback", res);
+      setData(res.data);
+      setLoading(false);
+    });
+  }, dependencyList);
 
-export default useQuery
+  return { data, loading };
+};
+
+export default useQuery;
